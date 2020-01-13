@@ -52,7 +52,7 @@ build cmake_object_order_depends_target_multilib: phony || CMakeFiles/multilib.d
 
 build CMakeFiles/multilib.dir/sync_thread.cpp.o: CXX_COMPILER__multilib ../sync_thread.cpp || cmake_object_order_depends_target_multilib
   DEP_FILE = CMakeFiles/multilib.dir/sync_thread.cpp.o.d
-  FLAGS = -pthreads -Weverything -Wno-c++98-compact-pedantic -g   -std=gnu++2a
+  FLAGS = -pthreads -Weverything -Wno-c++98-compat-pedantic -Wno-c++98-compat -Wno-ctad-maybe-unsupported -g   -std=gnu++2a
   OBJECT_DIR = CMakeFiles/multilib.dir
   OBJECT_FILE_DIR = CMakeFiles/multilib.dir
   TARGET_COMPILE_PDB = CMakeFiles/multilib.dir/
@@ -67,7 +67,7 @@ build CMakeFiles/multilib.dir/sync_thread.cpp.o: CXX_COMPILER__multilib ../sync_
 # Link the executable multilib
 
 build multilib: CXX_EXECUTABLE_LINKER__multilib CMakeFiles/multilib.dir/sync_thread.cpp.o
-  FLAGS = -pthreads -Weverything -Wno-c++98-compact-pedantic -g
+  FLAGS = -pthreads -Weverything -Wno-c++98-compat-pedantic -Wno-c++98-compat -Wno-ctad-maybe-unsupported -g
   OBJECT_DIR = CMakeFiles/multilib.dir
   POST_BUILD = :
   PRE_LINK = :

@@ -8,7 +8,7 @@ using std::thread;
 
 static object_sync thr_transfer;
 
-void thr(){
+static void thr(){
     int test = 5;
     thr_transfer.put<int&, object_sync::ignore, object_sync::same_object>(test);
     std::this_thread::sleep_for(std::chrono::seconds(1));
