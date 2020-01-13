@@ -51,6 +51,7 @@ public:
         unique_lock lk(mut);
         void *tpm = reinterpret_cast<void *>(new remove_reference_t<T>(share_object));
         obj.store(tpm);
+//        obj.notify_one();
         cv.notify_one();
     }
 
@@ -62,6 +63,7 @@ public:
         unique_lock lk(mut);
         void *tpm = reinterpret_cast<void *>(new remove_reference_t<T>(share_object));
         obj.store(tpm);
+//        obj.notify_one();
         cv.notify_one();
     }
 
@@ -74,6 +76,7 @@ public:
         void *tpm = malloc(sizeof(remove_reference_t<T>));
         std::memcpy(tpm, &share_object, sizeof(remove_reference_t<T>));
         obj.store(tpm);
+//        obj.notify_one();
         cv.notify_one();
     }
 
@@ -84,23 +87,28 @@ public:
 
         unique_lock lk(mut);
         obj.store(reinterpret_cast<void *>((&share_object)));
+//        obj.notify_one();
         cv.notify_one();
     }
 
     void *get(){
         unique_lock lk(mut);
         //if put notify will be before get wait
+//        obj.wait(nullptr);
         if(!obj.load())
             cv.wait(lk);
+        obj.store(nullptr);
         return obj.load();
     }
 
     template<typename T>
     T& get(){
         unique_lock lk(mut);
+//        obj.wait(nullptr);
         if(!obj.load())
             cv.wait(lk);
         T& tmp = *(reinterpret_cast<T *>(obj.load()));
+        obj.store(nullptr);
         return tmp;
     }
 };
