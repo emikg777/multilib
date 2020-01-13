@@ -1,5 +1,5 @@
-#ifndef MULTITHREADS_SYNC_THREAD_HPP
-#define MULTITHREADS_SYNC_THREAD_HPP
+#ifndef MULTILIB_SYNC_THREAD_HPP
+#define MULTILIB_SYNC_THREAD_HPP
 #include <type_traits>
 #include <atomic>
 #include <condition_variable>
@@ -113,4 +113,4 @@ public:
     }
 };
 
-#endif //MULTITHREADS_SYNC_THREAD_HPP
+#endif //MULTILIB_SYNC_THREAD_HPP
