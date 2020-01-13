@@ -41,10 +41,10 @@ public:
         copy_object,
         same_object,
         reference_object,
+
     };
 
-    template<typename T, error_sync warning = error_sync::signalize/*, type_sync ts,
-            enable_if_t<ts == copy_object, int> = 0*/>
+    template<error_sync warning = error_sync::signalize, typename T>
     void put(T&& share_object){
         static_assert(!(warning == error_sync::signalize && std::is_pointer_v<T>));
 
@@ -55,8 +55,8 @@ public:
         cv.notify_one();
     }
 
-    template<typename T, error_sync warning = error_sync::signalize, type_sync ts,
-            enable_if_t<ts == copy_object, int> = 0>
+    template<error_sync warning = error_sync::signalize, type_sync ts,
+            enable_if_t<ts == copy_object, int> = 0, typename T>
     void put(T&& share_object){
         static_assert(!(warning == error_sync::signalize && std::is_pointer_v<T>));
 
@@ -67,8 +67,8 @@ public:
         cv.notify_one();
     }
 
-    template<typename T, error_sync warning = error_sync::signalize, type_sync ts,
-            enable_if_t<ts == same_object, int> = 0>
+    template<error_sync warning = error_sync::signalize, type_sync ts,
+            enable_if_t<ts == same_object, int> = 0, typename T>
     void put(T&& share_object){
         static_assert(!(warning == error_sync::signalize && std::is_pointer_v<T>));
 
@@ -80,8 +80,8 @@ public:
         cv.notify_one();
     }
 
-    template<typename T, error_sync warning = error_sync::signalize, type_sync ts,
-            enable_if_t<ts == reference_object, int> = 0>
+    template<error_sync warning = error_sync::signalize, type_sync ts,
+            enable_if_t<ts == reference_object, int> = 0, typename T>
     void put(T&& share_object){
         static_assert(!(warning == error_sync::signalize && std::is_pointer_v<T>));
 
