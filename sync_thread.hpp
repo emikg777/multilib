@@ -105,6 +105,4 @@ public:
     }
 };
 
-
-
 #endif //MULTITHREADS_SYNC_THREAD_HPP
